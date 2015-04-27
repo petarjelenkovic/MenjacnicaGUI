@@ -151,6 +151,11 @@ public class MenjacnicaGUI extends JFrame {
 		popupMenu.add(mntmObrisiKurs);
 		
 		JMenuItem mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+		mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				izvrsiZ();
+			}
+		});
 		popupMenu.add(mntmIzvrsiZamenu);
 		
 		//JScrollPane scrollPane_1 = new JScrollPane();
@@ -242,6 +247,11 @@ public class MenjacnicaGUI extends JFrame {
 		panel.add(btnObrisiKurs);
 		
 		JButton btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
+		btnIzvrsiZamenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				izvrsiZ();
+			}
+		});
 		btnIzvrsiZamenu.setPreferredSize(new Dimension(120, 23));
 		panel.add(btnIzvrsiZamenu);
 	}
@@ -303,6 +313,11 @@ public class MenjacnicaGUI extends JFrame {
 			
 		}
 		return scrollPane_1;
+	}
+	
+	private void izvrsiZ(){
+		IzvrsiZamenuGUI iz = new IzvrsiZamenuGUI();
+		iz.setVisible(true);
 	}
 	
 	
