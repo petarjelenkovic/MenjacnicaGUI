@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -191,6 +192,13 @@ public class ObrisiKursGUI extends JFrame {
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
 			btnObrisi = new JButton("Obrisi");
+			btnObrisi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String a = "Obrisan kurs = Sifra: "+getTextField().getText()+" Naziv: "+getTextField_1().getText()+" Prodajni kurs: "+getTextField_2().getText()
+							+" Kupovni kurs: "+getTextField_3().getText()+" Srednji kurs: "+getTextField_4().getText()+" Skraceni naziv: "+getTextField_5().getText();
+					MenjacnicaGUI.naKraj(a);
+				}
+			});
 			btnObrisi.setEnabled(false);
 			btnObrisi.setBounds(10, 205, 131, 23);
 		}

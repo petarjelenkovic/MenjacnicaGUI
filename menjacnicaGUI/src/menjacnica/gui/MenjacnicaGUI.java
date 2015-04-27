@@ -50,6 +50,8 @@ public class MenjacnicaGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private static JTextArea textArea;
+	private static JScrollPane scrollPane_1;
 
 	/**
 	 * Launch the application.
@@ -151,15 +153,15 @@ public class MenjacnicaGUI extends JFrame {
 		JMenuItem mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
 		popupMenu.add(mntmIzvrsiZamenu);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setPreferredSize(new Dimension(2, 66));
-		scrollPane_1.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		contentPane.add(scrollPane_1, BorderLayout.SOUTH);
+		//JScrollPane scrollPane_1 = new JScrollPane();
+		//scrollPane_1.setPreferredSize(new Dimension(2, 66));
+		//scrollPane_1.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.add(getScrollPane_1(), BorderLayout.SOUTH);
 		
-		final JTextArea textArea = new JTextArea();
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		scrollPane_1.setViewportView(textArea);
+		//final JTextArea textArea = new JTextArea();
+		//textArea.setWrapStyleWord(true);
+		//textArea.setLineWrap(true);
+		scrollPane_1.setViewportView(getTextArea());
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Open");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
@@ -169,7 +171,7 @@ public class MenjacnicaGUI extends JFrame {
 				int rv = fc.showOpenDialog(contentPane);
 				if(rv == JFileChooser.APPROVE_OPTION){
 					File file = fc.getSelectedFile();
-					textArea.append("\n"+"Ucitan fajl: "+file.getAbsolutePath());
+					getTextArea().append("\n"+"Ucitan fajl: "+file.getAbsolutePath());
 				}
 			}
 		});
@@ -185,7 +187,7 @@ public class MenjacnicaGUI extends JFrame {
 				int rv = fc.showSaveDialog(contentPane);
 				if(rv== JFileChooser.APPROVE_OPTION){
 					File file = fc.getSelectedFile();
-					textArea.append("\n"+"Sacuvan fajl: "+file.getAbsolutePath());
+					getTextArea().append("\n"+"Sacuvan fajl: "+file.getAbsolutePath());
 				}
 			}
 		});
@@ -278,4 +280,30 @@ public class MenjacnicaGUI extends JFrame {
 		ObrisiKursGUI ok = new ObrisiKursGUI();
 		ok.setVisible(true);
 	}
+	
+	private static JTextArea getTextArea(){
+		if(textArea == null) {
+			textArea = new JTextArea();
+			textArea.setWrapStyleWord(true);
+			textArea.setLineWrap(true);
+			scrollPane_1.setViewportView(textArea);
+		}
+		return textArea;
+	}
+	
+	public static void naKraj(String cx){
+		getTextArea().append("\n"+cx);
+	}
+	
+	private JScrollPane getScrollPane_1(){
+		if(scrollPane_1 == null){
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setPreferredSize(new Dimension(2, 66));
+			scrollPane_1.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			
+		}
+		return scrollPane_1;
+	}
+	
+	
 }
